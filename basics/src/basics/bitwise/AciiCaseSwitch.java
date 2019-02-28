@@ -28,7 +28,7 @@ public class AciiCaseSwitch {
 	public static void toLowerCase(char c) {
 		char mask = ' ';
 		char r = (char) (c | mask);
-		readme.write("[" + c + "] To lower case:\n");
+		readme.write("[" + c + "] To lower case:  \n");
 		readme.write("  " + bin(c) + "  \n|  " + bin(mask) + "  \n  " + bin(r) + "  \n\n" );
 	}
 
@@ -41,7 +41,7 @@ public class AciiCaseSwitch {
 	private static void toUpperCase(char c) {
 		Character mask = '_';
 		char r = (char) (c & mask);
-		readme.write("[" + c + "] To upper case:\n");
+		readme.write("[" + c + "] To upper case:  \n");
 		readme.write("  " + bin(c) + "  \n& " + bin(mask) + "  \n  " + bin(r) + "  \n\n");
 	}
 
