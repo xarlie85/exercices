@@ -1,7 +1,6 @@
 package basics.bitwise;
 
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.stream.Stream;
 
@@ -14,8 +13,6 @@ import markdown.ReadmeFileCreator;
  *
  */
 public class AciiCaseSwitch {
-	
-	private static PrintWriter readme = null;
 	
 	private static String bin(char c) {
 		return Integer.toBinaryString(c) + "(" + (int) c + ") --> [" + c + "]";
