@@ -42,7 +42,7 @@ public class AciiCaseSwitch {
 		Character mask = '_';
 		char r = (char) (c & mask);
 		readme.write("[" + c + "] To upper case:  \n");
-		readme.write("  " + bin(c) + "  \n& " + bin(mask) + "  \n  " + bin(r) + "  \n\n");
+		readme.write("  " + bin(c) + "  \n&" + bin(mask) + "  \n  " + bin(r) + "  \n\n");
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
