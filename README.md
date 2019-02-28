@@ -1,6 +1,6 @@
 # EXERCICES OF JAVA
 
-
+All kind of resolved exercices that anyone can easily contribute by creating its own solution branch
 
 ## Index
 
