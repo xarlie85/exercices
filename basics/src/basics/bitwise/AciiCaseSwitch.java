@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.stream.Stream;
 
+import markdown.ReadmeFileCreator;
+
 /**
  * The class AciiCaseSwitch shows how to change case by bitwise operations.
  * 
@@ -12,12 +14,6 @@ import java.util.stream.Stream;
  *
  */
 public class AciiCaseSwitch {
-	
-	/**
-	 * These start and end tags are for keeping spaces in the markdown output file
-	 */
-	private static final String startKeepingSpaces = "<pre>";
-	private static final String endKeepingSpaces = "</pre>";
 	
 	private static PrintWriter readme = null;
 	
@@ -34,8 +30,8 @@ public class AciiCaseSwitch {
 	public static void toLowerCase(char c) {
 		char mask = ' ';
 		char r = (char) (c | mask);
-		readme.write("[" + c + "] To lower case:  \n");
-		readme.write("  " + bin(c) + "  \n|  " + bin(mask) + "  \n  " + bin(r) + "  \n\n" );
+		ReadmeFileCreator.readme.write("[" + c + "] To lower case:  \n");
+		ReadmeFileCreator.readme.write("  " + bin(c) + "  \n|  " + bin(mask) + "  \n  " + bin(r) + "  \n\n" );
 	}
 
 	/**
@@ -47,13 +43,14 @@ public class AciiCaseSwitch {
 	private static void toUpperCase(char c) {
 		Character mask = '_';
 		char r = (char) (c & mask);
-		readme.write("[" + c + "] To upper case:  \n");
-		readme.write("  " + bin(c) + "  \n& " + bin(mask) + "  \n  " + bin(r) + "  \n\n");
+		ReadmeFileCreator.readme.write("[" + c + "] To upper case:  \n");
+		ReadmeFileCreator.readme.write("  " + bin(c) + "  \n& " + bin(mask) + "  \n  " + bin(r) + "  \n\n");
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		readme = new PrintWriter("src/basics/bitwise/README.md", "UTF-8");
-		readme.write(startKeepingSpaces);
+		
+		ReadmeFileCreator readmeFileCreator = new ReadmeFileCreator("src/basics/bitwise/README.md");
+		
 		//iteration over all the ascii uppper case chars
 		Stream.iterate(65, (d) -> d + 1).limit(26).forEach((d) -> toLowerCase((char) d.intValue()));
 		
@@ -64,8 +61,8 @@ public class AciiCaseSwitch {
 		char c = 'ñ';
 		toUpperCase(c); // not working properly!
 		
-		readme.write(endKeepingSpaces);
-		readme.close();
+		readmeFileCreator.close();
+		
 	}
 
 }
