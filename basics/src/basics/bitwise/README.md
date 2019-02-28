@@ -1,5 +1,4 @@
-Output of the file 
-  
+Output:  
 <pre>  
 [A] To lower case:  
   1000001(65) --> [A]  
