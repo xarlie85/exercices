@@ -3,6 +3,7 @@ package basics.algorithms.strings.compare;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,10 @@ public class StringPermutationFinder {
 		// list of words to check for permutations among them
 		String[] perms = {"tupamaru", "marutupa","patumadre","matupadre","putamura","murutapa","pan","nip","pna","npi"};
 		
+		ReadmeFileCreator.readme.write("## Input List: ");
+		Arrays.stream(perms).forEach(z-> ReadmeFileCreator.readme.write("- " + z + "  \n"));
+		
+		ReadmeFileCreator.readme.write("  \n");
 		// map of word as key and list of permutations as a value
 		Map<String, List<String>> permsMap = new HashMap<>();
 		
@@ -105,8 +110,9 @@ public class StringPermutationFinder {
 		}
 		
 		// print the map of permutations created above.
+		ReadmeFileCreator.readme.write("## Permutations found:  \n");
 		permsMap.forEach((x,y) -> {
-			ReadmeFileCreator.readme.write("[" + x + "]:: PERMUTATIONS ::  \n" );
+			ReadmeFileCreator.readme.write("[" + x + "] :: PERMUTATIONS ::  \n" );
 			y.forEach(z -> {
 				ReadmeFileCreator.readme.write("- " + z + "  \n");
 			});
