@@ -12,8 +12,7 @@ Output:
 - pna  
 - npi  
   
-## Permutations found: 
-
+## Family of words by character permutation found:  
 [tupamaru] :: PERMUTATIONS ::  
 - marutupa  
 - putamura  

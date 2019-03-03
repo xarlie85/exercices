@@ -136,7 +136,7 @@ public class StringPermutationFinder {
 		}
 
 		// print the map of permutations created above.
-		ReadmeFileCreator.readme.write("## Permutations found: \n");
+		ReadmeFileCreator.readme.write("## Family of words by character permutation found:  ");
 		permsFamilyMap.forEach((x, y) -> {
 			ReadmeFileCreator.readme.write("\n[" + x + "] :: PERMUTATIONS ::  \n");
 			y.forEach(z -> {
