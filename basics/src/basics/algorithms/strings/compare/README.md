@@ -2,6 +2,7 @@ Output:
 <pre>  
 ## Input List:  
 - tupamaru  
+- pin  
 - marutupa  
 - patumadre  
 - matupadre  
@@ -11,6 +12,7 @@ Output:
 - nip  
 - pna  
 - npi  
+- npa  
   
 ## Family of words by character permutation found:  
 [tupamaru] :: PERMUTATIONS ::  
@@ -18,7 +20,8 @@ Output:
 - putamura  
 - murutapa  
 
-[nip] :: PERMUTATIONS ::  
+[pin] :: PERMUTATIONS ::  
+- pin  
 - nip  
 - npi  
 
@@ -29,5 +32,6 @@ Output:
 [pan] :: PERMUTATIONS ::  
 - pan  
 - pna  
+- npa  
   
 </pre>  

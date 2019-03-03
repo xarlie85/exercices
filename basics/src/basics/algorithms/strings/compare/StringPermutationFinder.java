@@ -112,8 +112,8 @@ public class StringPermutationFinder {
 		ReadmeFileCreator readme = new ReadmeFileCreator("src/basics/algorithms/strings/compare/README.md");
 
 		// list of words to check for permutations among them
-		String[] perms = { "tupamaru", "marutupa", "patumadre", "matupadre", "putamura", "murutapa", "pan", "nip",
-				"pna", "npi" };
+		String[] perms = { "tupamaru", "pin", "marutupa", "patumadre", "matupadre", "putamura", "murutapa", "pan", "nip",
+				"pna", "npi", "npa" };
 
 		ReadmeFileCreator.readme.write("## Input List:  \n");
 		Arrays.stream(perms).forEach(z -> ReadmeFileCreator.readme.write("- " + z + "  \n"));
