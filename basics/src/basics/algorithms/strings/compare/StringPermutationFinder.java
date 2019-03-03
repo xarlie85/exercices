@@ -15,43 +15,50 @@ public class StringPermutationFinder {
 	static Map<Character, Integer> result;
 
 	/**
-	 * This method just applies addition or substraction to the map entry value related to the key (c).
-	 * Every time the value gets 0, the entry is removed for the c key.
+	 * This method just applies addition or substraction to the map entry value
+	 * related to the key (c). Every time the value gets 0, the entry is removed for
+	 * the c key.
 	 * 
-	 * @param c The character currently involved
-	 * @param op The operation to apply in the value related to the c (key map) character
+	 * @param c
+	 *            The character currently involved
+	 * @param op
+	 *            The operation to apply in the value related to the c (key map)
+	 *            character
 	 */
 	private static void createEntry(Character c, String op) {
-		
+
 		Integer n = result.get((char) c);
-		
-		switch(op) {
+
+		switch (op) {
 		case "+":
-			if ( n != null )
-				result.put(c, n+1);
-			else 
+			if (n != null)
+				result.put(c, n + 1);
+			else
 				result.put(c, 1);
 			break;
-			
+
 		case "-":
-			if ( n != null )
-				result.put(c, n-1);
-			else 
+			if (n != null)
+				result.put(c, n - 1);
+			else
 				result.put(c, -1);
 			break;
 		default:
-				System.out.println("No possible operation.");
+			System.out.println("No possible operation.");
 		}
-		
-		if ( result.get(c) == 0 )
+
+		if (result.get(c) == 0)
 			result.remove(c);
 	}
 
 	/**
 	 * Returns true if the origin parameter is a permutation of the perm parameter.
-	 * Algorithm: origin adds key value entries in a map for each of its characters
-	 * and perm substracts for each character. If there is a value different form 0
-	 * for a key at the end... it should return false
+	 * 
+	 * Algorithm: origin char array adds key value entries in a map for each of its
+	 * characters and perm subtracts for each of its characters. When the value for
+	 * a key is 0 in the map, the algorithm deletes the entry. If the map is not
+	 * empty after going through the two char arrays is because they have different
+	 * characters.
 	 * 
 	 * @param origin
 	 *            The origin String parameter
@@ -62,11 +69,11 @@ public class StringPermutationFinder {
 	public static boolean isPermutationOf(char[] origin, char[] perm) {
 
 		result = new HashMap<>();
-		
+
 		if (origin.length != perm.length)
 			return false;
 
-		for ( int i = 0 ; i < origin.length ; i++ ) {
+		for (int i = 0; i < origin.length; i++) {
 			Character co = origin[i];
 			Character cp = perm[i];
 			createEntry(co, "+");
@@ -79,26 +86,27 @@ public class StringPermutationFinder {
 
 		return true;
 	}
-	
+
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		
+
 		ReadmeFileCreator readme = new ReadmeFileCreator("src/basics/algorithms/strings/compare/README.md");
-		
+
 		// list of words to check for permutations among them
-		String[] perms = {"tupamaru", "marutupa","patumadre","matupadre","putamura","murutapa","pan","nip","pna","npi"};
-		
-		ReadmeFileCreator.readme.write("## Input List: ");
-		Arrays.stream(perms).forEach(z-> ReadmeFileCreator.readme.write("- " + z + "  \n"));
-		
+		String[] perms = { "tupamaru", "marutupa", "patumadre", "matupadre", "putamura", "murutapa", "pan", "nip",
+				"pna", "npi" };
+
+		ReadmeFileCreator.readme.write("## Input List:  \n");
+		Arrays.stream(perms).forEach(z -> ReadmeFileCreator.readme.write("- " + z + "  \n"));
 		ReadmeFileCreator.readme.write("  \n");
+		
 		// map of word as key and list of permutations as a value
 		Map<String, List<String>> permsMap = new HashMap<>();
-		
-		for ( int i = 0 ; i < perms.length ; i ++ ) {
-			for ( int j = 1; j < perms.length; j++ ) {
-				if ( isPermutationOf(perms[i].toCharArray(), perms[j].toCharArray()) ) {
+
+		for (int i = 0; i < perms.length; i++) {
+			for (int j = 1; j < perms.length; j++) {
+				if (isPermutationOf(perms[i].toCharArray(), perms[j].toCharArray())) {
 					List<String> permValue = permsMap.get(perms[i]);
-					if ( permValue != null ) {
+					if (permValue != null) {
 						permValue.add(perms[j]);
 					} else {
 						List<String> permVal = new ArrayList<>();
@@ -108,16 +116,16 @@ public class StringPermutationFinder {
 				}
 			}
 		}
-		
+
 		// print the map of permutations created above.
-		ReadmeFileCreator.readme.write("## Permutations found:  \n");
-		permsMap.forEach((x,y) -> {
-			ReadmeFileCreator.readme.write("[" + x + "] :: PERMUTATIONS ::  \n" );
+		ReadmeFileCreator.readme.write("## Permutations found: \n");
+		permsMap.forEach((x, y) -> {
+			ReadmeFileCreator.readme.write("\n[" + x + "] :: PERMUTATIONS ::  \n");
 			y.forEach(z -> {
 				ReadmeFileCreator.readme.write("- " + z + "  \n");
 			});
 		});
-		
+
 		readme.close();
 	}
 }
