@@ -12,7 +12,11 @@ import markdown.ReadmeFileCreator;
 
 public class StringPermutationFinder {
 
+	// map of characters vs amount found
 	static Map<Character, Integer> result;
+
+	// map of word vs list of permutations
+	static Map<String, List<String>> permsFamilyMap = new HashMap<>();
 
 	/**
 	 * This method just applies addition or substraction to the map entry value
@@ -87,6 +91,22 @@ public class StringPermutationFinder {
 		return true;
 	}
 
+	/**
+	 * Searches for a family of character's permutation word and returns true if already exists in the map
+	 * 
+	 * Algorithm: Going through all the keys and checking if the word is a permutation of one of them
+	 * 
+	 * @param word
+	 * @return
+	 */
+	private static boolean existsPermutationFamily(char[] word) {
+		
+		for ( String k : permsFamilyMap.keySet() ) {
+			if (isPermutationOf(k.toCharArray(), word)) return true;
+		}
+		return false;
+	}
+
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
 		ReadmeFileCreator readme = new ReadmeFileCreator("src/basics/algorithms/strings/compare/README.md");
@@ -98,20 +118,18 @@ public class StringPermutationFinder {
 		ReadmeFileCreator.readme.write("## Input List:  \n");
 		Arrays.stream(perms).forEach(z -> ReadmeFileCreator.readme.write("- " + z + "  \n"));
 		ReadmeFileCreator.readme.write("  \n");
-		
-		// map of word as key and list of permutations as a value
-		Map<String, List<String>> permsMap = new HashMap<>();
 
 		for (int i = 0; i < perms.length; i++) {
 			for (int j = 1; j < perms.length; j++) {
 				if (isPermutationOf(perms[i].toCharArray(), perms[j].toCharArray())) {
-					List<String> permValue = permsMap.get(perms[i]);
+					List<String> permValue = permsFamilyMap.get(perms[i]);
 					if (permValue != null) {
 						permValue.add(perms[j]);
 					} else {
+						if ( existsPermutationFamily(perms[j].toCharArray()) ) continue;
 						List<String> permVal = new ArrayList<>();
 						permVal.add(perms[j]);
-						permsMap.put(perms[i], permVal);
+						permsFamilyMap.put(perms[i], permVal);
 					}
 				}
 			}
@@ -119,7 +137,7 @@ public class StringPermutationFinder {
 
 		// print the map of permutations created above.
 		ReadmeFileCreator.readme.write("## Permutations found: \n");
-		permsMap.forEach((x, y) -> {
+		permsFamilyMap.forEach((x, y) -> {
 			ReadmeFileCreator.readme.write("\n[" + x + "] :: PERMUTATIONS ::  \n");
 			y.forEach(z -> {
 				ReadmeFileCreator.readme.write("- " + z + "  \n");
