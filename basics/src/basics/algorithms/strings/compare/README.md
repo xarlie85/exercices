@@ -18,12 +18,14 @@ Output:
 [tupamaru] :: PERMUTATIONS ::  
 - marutupa  
 - putamura  
-- murutapa  
 
 [pin] :: PERMUTATIONS ::  
 - pin  
 - nip  
 - npi  
+
+[marutupa] :: PERMUTATIONS ::  
+- murutapa  
 
 [patumadre] :: PERMUTATIONS ::  
 - patumadre  

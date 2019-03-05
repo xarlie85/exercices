@@ -13,47 +13,10 @@ import markdown.ReadmeFileCreator;
 public class StringPermutationFinder {
 
 	// map of characters vs amount found
-	static Map<Character, Integer> result;
+	private static Map<Character, Integer> result;
 
 	// map of word vs list of permutations
-	static Map<String, List<String>> permsFamilyMap = new HashMap<>();
-
-	/**
-	 * This method just applies addition or substraction to the map entry value
-	 * related to the key (c). Every time the value gets 0, the entry is removed for
-	 * the c key.
-	 * 
-	 * @param c
-	 *            The character currently involved
-	 * @param op
-	 *            The operation to apply in the value related to the c (key map)
-	 *            character
-	 */
-	private static void createEntry(Character c, String op) {
-
-		Integer n = result.get((char) c);
-
-		switch (op) {
-		case "+":
-			if (n != null)
-				result.put(c, n + 1);
-			else
-				result.put(c, 1);
-			break;
-
-		case "-":
-			if (n != null)
-				result.put(c, n - 1);
-			else
-				result.put(c, -1);
-			break;
-		default:
-			System.out.println("No possible operation.");
-		}
-
-		if (result.get(c) == 0)
-			result.remove(c);
-	}
+	private static Map<String, List<String>> permsFamilyMap = new HashMap<>();
 
 	/**
 	 * Returns true if the origin parameter is a permutation of the perm parameter.
@@ -72,7 +35,7 @@ public class StringPermutationFinder {
 	 */
 	public static boolean isPermutationOf(char[] origin, char[] perm) {
 
-		result = new HashMap<>();
+		result = new NonZeroValuesHashMap<>();
 
 		if (origin.length != perm.length)
 			return false;
@@ -80,8 +43,8 @@ public class StringPermutationFinder {
 		for (int i = 0; i < origin.length; i++) {
 			Character co = origin[i];
 			Character cp = perm[i];
-			createEntry(co, "+");
-			createEntry(cp, "-");
+			result.put(co, 1);
+			result.put(cp, -1);
 		}
 
 		if (!result.isEmpty()) {
