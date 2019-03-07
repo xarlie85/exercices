@@ -21,11 +21,11 @@ public class StringPermutationFinder {
 	/**
 	 * Returns true if the origin parameter is a permutation of the perm parameter.
 	 * 
-	 * Algorithm: origin char array adds key value entries in a map for each of its
-	 * characters and perm subtracts for each of its characters. When the value for
-	 * a key is 0 in the map, the algorithm deletes the entry. If the map is not
-	 * empty after going through the two char arrays is because they have different
-	 * characters.
+	 * Algorithm: origin char array adds up on key-value entries in a map for each
+	 * of its characters and perm subtracts on key-value entries for each of its
+	 * characters. When the value for a key is 0 in the map, the algorithm deletes
+	 * the entry. If the map is not empty after going through the two char arrays is
+	 * because they have different characters.
 	 * 
 	 * @param origin
 	 *            The origin String parameter
@@ -37,8 +37,9 @@ public class StringPermutationFinder {
 
 		result = new NonZeroValuesHashMap<>();
 
-		if (origin.length != perm.length)
+		if (origin.length != perm.length) {
 			return false;
+		}
 
 		for (int i = 0; i < origin.length; i++) {
 			Character co = origin[i];
@@ -55,17 +56,21 @@ public class StringPermutationFinder {
 	}
 
 	/**
-	 * Searches for a family of character's permutation word and returns true if already exists in the map
+	 * Searches for a family of character's permutation word and returns true if
+	 * already exists in the map
 	 * 
-	 * Algorithm: Going through all the keys and checking if the word is a permutation of one of them
+	 * Algorithm: Going through all the keys and checking if the word is a
+	 * permutation of one of them
 	 * 
 	 * @param word
 	 * @return
 	 */
 	private static boolean existsPermutationFamily(char[] word) {
-		
-		for ( String k : permsFamilyMap.keySet() ) {
-			if (isPermutationOf(k.toCharArray(), word)) return true;
+
+		for (String k : permsFamilyMap.keySet()) {
+			if (isPermutationOf(k.toCharArray(), word)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -75,8 +80,8 @@ public class StringPermutationFinder {
 		ReadmeFileCreator readme = new ReadmeFileCreator("src/basics/algorithms/strings/compare/README.md");
 
 		// list of words to check for permutations among them
-		String[] perms = { "tupamaru", "pin", "marutupa", "patumadre", "matupadre", "putamura", "murutapa", "pan", "nip",
-				"pna", "npi", "npa" };
+		String[] perms = { "tupamaru", "pin", "marutupa", "patumadre", "matupadre", "putamura", "murutapa", "pan",
+				"nip", "pna", "npi", "npa" };
 
 		ReadmeFileCreator.readme.write("## Input List:  \n");
 		Arrays.stream(perms).forEach(z -> ReadmeFileCreator.readme.write("- " + z + "  \n"));
@@ -89,7 +94,8 @@ public class StringPermutationFinder {
 					if (permValue != null) {
 						permValue.add(perms[j]);
 					} else {
-						if ( existsPermutationFamily(perms[j].toCharArray()) ) continue;
+						if (existsPermutationFamily(perms[j].toCharArray()))
+							continue;
 						List<String> permVal = new ArrayList<>();
 						permVal.add(perms[j]);
 						permsFamilyMap.put(perms[i], permVal);
